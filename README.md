@@ -18,7 +18,7 @@ Wanted a global store that is:
 -   [Examples](#examples)
 -   [Performance](#performance)
 -   [API](#api)
--   [License](#license)
+-   [Real World Examples](#real-world-examples)
 
 ## From React local state to Pathstore
 
@@ -374,3 +374,6 @@ const Counter = () => {
 }
 ```
 
+## Real World Examples
+
+- [Gothinkster Real World App Built with Preact, Vite, and Pathstore](https://github.com/adriaanwm/pathstore-preact-vite-realworld)
