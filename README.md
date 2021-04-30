@@ -65,13 +65,13 @@ You might wonder, why did we pass in `['counter']` instead of just `'counter'`. 
 install
 
 ```bash
-npm install --save @adriaanwm/pathstore
+npm install --save pathstore-react
 ```
 
 create a store
 
 ```js
-import {createStore} from '@adriaanwm/pathstore'
+import {createStore} from 'pathstore-react'
 import {useState, useRef} from 'react'
 
 export const store = createStore({ useState, useRef, reduxDevtools: true })
