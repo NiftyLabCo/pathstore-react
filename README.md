@@ -72,9 +72,9 @@ create a store
 
 ```js
 import {createStore} from 'pathstore-react'
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 
-export const store = createStore({ useState, useRef, reduxDevtools: true })
+export const store = createStore({ useEffect, useState, useRef, reduxDevtools: true })
 ```
 
 use the store

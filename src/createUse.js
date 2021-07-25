@@ -1,17 +1,15 @@
 import {equals} from 'ramda'
 
-export const createUseRunOnceOnChange = useRef => (fn, dependencies) => {
+export const createUseRunOnceOnChange = ({useRef, useEffect}) => (fn, dependencies) => {
   const lastRef = useRef({})
+  useEffect(() => () => lastRef.current.cleanup && lastRef.current.cleanup(), [])
   if (equals(lastRef.current.dependencies, dependencies)) return
   if (lastRef.current.cleanup) lastRef.current.cleanup()
-  lastRef.current = {
-    dependencies,
-    cleanup: fn()
-  }
+  lastRef.current = {dependencies, cleanup: fn()}
 }
 
-export const createUse = ({store, useState, useRef}) => {
-  const useRunOnceOnChange = createUseRunOnceOnChange(useRef)
+export const createUse = ({store, useState, useRef, useEffect}) => {
+  const useRunOnceOnChange = createUseRunOnceOnChange({useRef, useEffect})
   return (path, defaultValue, options = {}) => {
     const [value, setValue] = useState(
       () => {
