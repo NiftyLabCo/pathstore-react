@@ -303,6 +303,7 @@ Hook that returns a stateful value, and a function to update it.
     -   `cleanup`  **Boolean**  (optional, default `false`) Set the value at `path` in state to `undefined` when the component unmounts.
     -   `override`  **Boolean**  (optional, default `false`) Set the value at `path` to `initialValue` even if there is already a value there.
     -   `identifier`  **String**  (optional) An identifier to use in Redux Devtools.
+    -   `setByFunction`  **Boolean**  (optional, default `false`) Passing a function in to the `set` function returned by `store.use`, the function will be called with the current value at the path. If this is `false` then the function passed in will be treated as a value and saved directly in the store.
 
 #### Return
 

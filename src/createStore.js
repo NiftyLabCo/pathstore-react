@@ -33,7 +33,7 @@ export const createStore = ({useEffect, useState, useRef, reduxDevtools}) => {
     subscribers: () => subscribers,
     get: path => rPath(path, state),
     set: (path, value, options = {}) => {
-      value = typeof value === 'function' ? value(existing) : value
+      value = (options.setByFunction && typeof value === 'function') ? value(rPath(path, state)) : value
       let oldState = state
       state = assocPath(path, value, state)
       changes.push({state, oldState, path, value})

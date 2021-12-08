@@ -26,7 +26,7 @@ export const createUse = ({store, useState, useRef, useEffect}) => {
         ? defaultValue
         : storeValue
       valueRef.current = initialValue
-      setValue(initialValue)
+      setValue({inner: initialValue})
       if (options.override || (storeValue === undefined && defaultValue !== undefined)) {
         store.set(path, defaultValue, {identifier: options.identifier})
       }
@@ -34,7 +34,7 @@ export const createUse = ({store, useState, useRef, useEffect}) => {
         const newValue = store.get(path)
         if (!equals(newValue, valueRef.current)) {
           valueRef.current = newValue
-          setValue(newValue)
+          setValue({inner: newValue})
         }
       })
       return () => {
