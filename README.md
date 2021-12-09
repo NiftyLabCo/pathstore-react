@@ -219,13 +219,14 @@ Will call all subscribe functions of changed path.
 -   `options` **Object** (optional) Some additional options.
     -   `noPublish` **Boolean** (optional) Do not trigger subscriber functions. The subscribe functions that would have been called will instead be called the next time `store.set` is called without the `noPublish` option
     -   `identifier` **String** (optional) A custom identifier that will be shown in Redux Devtools. Normally in Redux-land this would be the action. In Pathstore this is normally the path.
+    -   `setByFunction`  **Boolean**  (optional, default `false`) If passing a function in as the `value` argument, the function will be called with the current value at the path. If this is `false` then the function passed in will be treated as a value and saved directly in the store.
 
 #### Examples
 
 ```js
 store.set([], {}) // the store is {}
 store.set(['a'], 1) // the store is {a: 1}
-store.set(['a'], x => x + 1) // the store is {a: 2}
+store.set(['a'], x => x + 1, {setByFunction: true}) // the store is {a: 2}
 store.set(['b', 0, 'c'], 1) // the store is {a: 2, b: [{c: 1}]}
 ```
 

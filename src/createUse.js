@@ -1,4 +1,4 @@
-import {equals} from 'ramda'
+import {equals, pick} from 'ramda'
 
 export const createUseRunOnceOnChange = ({useRef, useEffect}) => (fn, dependencies) => {
   const lastRef = useRef({})
@@ -48,7 +48,8 @@ export const createUse = ({store, useState, useRef, useEffect}) => {
       valueRef.current,
       (newValue, options2 = {}) =>
         store.set(path, newValue, {
-          identifier: options2.identifier || options.identifier
+          ...pick(['identifier', 'noPublish', 'setByFunction'], options),
+          options2
         })
     ]
   }
