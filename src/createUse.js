@@ -2,9 +2,9 @@ import {equals, pick} from 'ramda'
 
 export const createUseRunOnceOnChange = ({useRef, useEffect}) => (fn, dependencies) => {
   const lastRef = useRef({})
-  useEffect(() => () => lastRef.current.cleanup && lastRef.current.cleanup(), [])
-  if (equals(lastRef.current.dependencies, dependencies)) return
-  if (lastRef.current.cleanup) lastRef.current.cleanup()
+  useEffect(() => () => lastRef.current && lastRef.current.cleanup && lastRef.current.cleanup(), [])
+  if (lastRef.current && equals(lastRef.current.dependencies, dependencies)) return
+  if (lastRef.current && lastRef.current.cleanup) lastRef.current.cleanup()
   lastRef.current = {dependencies, cleanup: fn()}
 }
 
